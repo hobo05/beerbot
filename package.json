@@ -1,0 +1,16 @@
+{
+  "name": "beerbot",
+  "version": "1.0.0",
+  "description": "beer bot that looks up beers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim Cheng <tim.cheng09@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "botkit": "^0.6.11",
+    "chowdown": "^1.2.2"
+  }
+}
