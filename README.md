@@ -3,7 +3,7 @@
 ## Commands
 
 * search|find all beer
-* search|find [beer]
+* search|find [beer name]
 
 ## Tech Stack
 

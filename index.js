@@ -120,6 +120,13 @@ controller.hears('(?:search|find) (.+)',['direct_message', 'direct_mention'], fu
     	.catch(e => fatalError(message, e, "Something weird happened when I tried searching..."));
 });
 
+controller.hears('^help$','direct_message,direct_mention,mention', function(bot, message) {
+    bot.reply(message, 'You can use the following commands' + [
+        '• search|find all beer',
+        '• search|find [beer name]'
+        ].join('\n '));
+});
+
 controller.hears('\\?$','direct_message,direct_mention,mention', function(bot, message) {
     bot.reply(message, randResponse([
         'I don\'t like the tone of your question so I\'m not going to answer it',
