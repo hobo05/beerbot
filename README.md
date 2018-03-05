@@ -2,6 +2,7 @@
 
 ## Commands
 
+* search|find all beer
 * search|find [beer]
 
 ## Tech Stack

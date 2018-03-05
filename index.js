@@ -55,7 +55,6 @@ function fatalError(message, error, customMessage) {
 
 function searchBeer(searchTerm) {
 	return sainsbury.getBeers()
-		
 		.then(allBeers => {
 			let fuse = new Fuse(allBeers, SEARCH_NAME_OPTIONS);
 	        return fuse.search(searchTerm);	
@@ -70,10 +69,33 @@ function formatBeerResults(beers) {
             "title": beer.name,
             "title_link": beer.url,
             "thumb_url": beer.imageUrl,
+            "fields": [
+                {
+                    "title": "Price/Unit",
+                    "value": beer.pricePerUnit,
+                    "short": true
+                },
+                {
+                    "title": "Price/Measure",
+                    "value": beer.pricePerMeasure,
+                    "short": true
+                }
+            ],
         })
 	})
 	return attachments
 }
+
+controller.hears('(?:search|find) all beer',['direct_message', 'direct_mention'], function(bot, message) {
+    bot.reply(message, 'querying the intergalactic smart beer fridge *beep* *boop* *beep* *boop*...')
+    sainsbury.getBeers()
+    	.then(beers => {
+    		let beerList = ""
+    		beers.forEach(beer => beerList += `• ${beer.name}\n`)
+    		bot.reply(message, `Here is the full list of beers:\n${beerList}Use the *search [beer name]* command to get the link to the beer(s)`)
+    	})
+    	.catch(e => fatalError(message, e, "Something weird happened when I tried searching..."));
+});
 
 controller.hears('(?:search|find) (.+)',['direct_message', 'direct_mention'], function(bot, message) {
     let searchTerm = message.match[1];
