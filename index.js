@@ -121,10 +121,12 @@ controller.hears('(?:search|find) (.+)',['direct_message', 'direct_mention'], fu
 });
 
 controller.hears('^help$','direct_message,direct_mention,mention', function(bot, message) {
-    bot.reply(message, 'You can use the following commands' + [
-        '• search|find all beer',
-        '• search|find [beer name]'
-        ].join('\n '));
+    bot.reply(message, 'You can use the following commands:' + [
+        'search|find all beer',
+        'search|find [beer name]'
+        ]
+        .map(command => `\n\t• *${command}*`)
+        .join(''));
 });
 
 controller.hears('\\?$','direct_message,direct_mention,mention', function(bot, message) {
