@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node index",
     "local-dev": "nodemon index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "dependencies": {
     "botkit": "^0.6.11",
@@ -18,6 +18,10 @@
     "lodash": "^4.17.5"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.4",
+    "mockery": "^2.1.0",
+    "nock": "^9.2.3",
     "nodemon": "^1.17.1"
   }
 }

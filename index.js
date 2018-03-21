@@ -1,19 +1,5 @@
-require('dotenv').config();
-
-if (!process.env.SLACK_TOKEN) {
-    console.log('Error: Specify slack bot token in .env (e.g. SLACK_TOKEN=abc)');
-    process.exit(1);
-}
-
-if (!process.env.USERNAME) {
-    console.log('Error: Specify your sainsbury username in .env (e.g. USERNAME=test@example.com)');
-    process.exit(1);
-}
-
-if (!process.env.PASSWORD) {
-    console.log('Error: Specify your sainsbury password in .env (e.g. PASSWORD=Password1)');
-    process.exit(1);
-}
+// Load .env
+const config = require('./lib/config');
 
 // requires
 const sainsbury = require('./lib/sainsbury.js')
@@ -38,7 +24,7 @@ const controller = Botkit.slackbot({
 });
 
 var bot = controller.spawn({
-    token: process.env.SLACK_TOKEN
+    token: config.SLACK_TOKEN
 }).startRTM();
 
 // Promisify bot methods
